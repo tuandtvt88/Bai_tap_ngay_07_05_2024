@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<img src="ngua.webp" alt="" style="position: absolute; width: 400px; left: 150px; top: 250px;" id="v">
+
+<script>
+    let s = 3;
+    setInterval(()=>{
+        let k = document.getElementById('v');
+        let trai = parseInt(k.style.left);
+         let imgWidth = k.offsetWidth;
+
+        if (trai > window.innerWidth - imgWidth + 200){ //Giảm biên bên phải
+            k.style.left = '-200px'; //giảm biên bên trái
+        } else {
+            k.style.left = (trai + s) + 'px';
+        }
+    }, 5);
+</script>
+
+</body>
+</html>

@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<img src="nv.png" alt="" style="position: absolute;width: 100px;left: 200px;top: 100px" id="v">
+<script>
+    let speeds = [
+        // di chuyển sang phải
+        function(k) {
+            k.style.left = parseInt(k.style.left) + 3 + 'px';
+        },
+        // di chuyển lên
+        function(k) {
+            k.style.top = parseInt(k.style.top) - 3 + 'px';
+        },
+        //di chuyển sang trái
+        function(k) {
+            k.style.left = parseInt(k.style.left) - 3 + 'px';
+        },
+        // di chuyển xuống
+        function(k) {
+            k.style.top = parseInt(k.style.top) + 3 + 'px';
+        }
+    ]
+
+    let index = 0; //Biến này được sử dụng để truy cập vào các hàm trong mảng speeds
+
+    setInterval(() => {
+        let k = document.getElementById('v');
+        speeds[index](k);
+
+        // kiểm tra đổi hướng
+        let left = parseInt(k.style.left);
+        let top = parseInt(k.style.top);
+
+        // căn lề
+        let phai = window.innerWidth - k.width;
+        let duoi = window.innerHeight - k.height;
+
+        if (left >= phai && index === 0) {
+            index = 1;
+        } else if (top <= 0 && index === 1) {
+            index = 2;
+        } else if (left <= 0 && index === 2) {
+            index = 3;
+        } else if (top >= duoi && index === 3) {
+            index = 0;
+        }
+    }, 1)
+</script>
+</body>
+</html>
